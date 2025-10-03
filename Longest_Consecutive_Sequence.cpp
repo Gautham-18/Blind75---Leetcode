@@ -1,14 +1,18 @@
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+using namespace std;
 
 class Solution {
 public:
-    int longestConsecutive(std::vector<int>& nums) {
+    int longestConsecutive(vector<int>& nums) {
         if (nums.empty()) {
             return 0;
         }
 
         // Step 1: Store all unique numbers in a hash set.
         // This handles duplicates in 'nums' efficiently, ensuring each number is present only once.
-        std::unordered_set<int> numSet;
+        unordered_set<int> numSet;
         for (int num : nums) {
             numSet.insert(num); // Average O(1) insertion
         }
@@ -32,10 +36,20 @@ public:
                 }
 
                 // Update the overall longest streak found.
-                longestStreak = std::max(longestStreak, currentStreak);
+                longestStreak = max(longestStreak, currentStreak);
             }
         }
 
         return longestStreak;
     }
 };
+
+int main(){
+    Solution solver;
+    vector<int> nums = {100, 4, 200, 1, 3, 2};
+    int result = solver.longestConsecutive(nums);
+    cout << "Input: {100, 4, 200, 1, 3, 2}" << endl;
+    cout << "Longest Consecutive Sequence: " << result << endl;
+    return 0;
+
+}
